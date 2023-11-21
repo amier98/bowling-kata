@@ -1,32 +1,30 @@
-export function bowlingCalc(allRolls: string): number {
+export function bowlingFrame(gameFrame: string): number {
   let score = 0;
-  // If it equals 10 pins, that is one roll
+  let rolls = 0;
 
-  //every player has two tries
-  //still trying to figure out how to skip the spaces in the for loop instead of removing the spaces
-  const array: string[] = allRolls.split("");
+  const gameRolls = gameFrame.split("");
+  console.log(gameRolls);
 
-  const result = array.filter((word) => word.trim().length > 0);
+  const specialRolls: { [key: string]: number } = {
+    "/": 10,
+  };
+  // a spare(/) is when both rolls in a frame equals 10 and plus the score of the next roll of next frame
 
-  if (array.includes("X")) {
-    return 10;
+  // a strike(X) is when you knock down all pins in first attempt
+
+  //cant get score until frames end
+
+  //you cannot play more than 10 frames
+
+  for (let frames = 0; frames < 10; frames++) {
+    if (gameRolls[rolls + 1] === "/") {
+      rolls += 3;
+      score += parseInt(gameRolls[rolls]) + specialRolls["/"];
+    } else {
+      score += parseInt(gameRolls[rolls]) + parseInt(gameRolls[rolls + 1]);
+    }
+    //rolls += 3;
   }
-
-  console.log(result);
-
-  for (let rolls = 0; rolls < result.length; rolls++) {
-    score += parseInt(result[rolls]);
-    console.log(score);
-  }
-
-  // for (let frame = 0; frame < 10; frame++) {
-  //   let current = 0;
-
-  //   score += parseInt(array[current] + array[current + 1]);
-  //   //i want to skip the space by incremening the current value which would be 2 at the end of the first loop
-  //   //however, it is not working as intended
-  //   current += 1;
-  // }
 
   return score;
 }

@@ -1,12 +1,21 @@
-import { bowlingCalc } from "../src/bowling";
-describe("tests for bowlingCalc function", () => {
-  it("return the score of one pin", () => {
-    expect(bowlingCalc("1")).toBe(1);
+import { bowlingFrame } from "../src/bowling";
+
+describe("frames", () => {
+  it("return correct score for 10 frames", () => {
+    //Arrange
+    const input = "11 11 11 11 11 11 11 11 11 11";
+    //Act
+    const expectedOutput = 20;
+    //Assert
+    expect(bowlingFrame(input)).toBe(expectedOutput);
   });
-  it("return the score of 20 rolls", () => {
-    expect(bowlingCalc("11 11 11 11 11 11 11 11 11 11")).toBe(20);
-  });
-  it("return the score of a strike", () => {
-    expect(bowlingCalc("X")).toBe(10);
+
+  it("return correct score of spare", () => {
+    //arrange
+    const input = "5/ 7/ 7/ 7/ 7/ 7/ 7/ 7/ 7/ 73";
+    //act
+    const expectedOutput = 163;
+    //assert
+    expect(bowlingFrame(input)).toBe(expectedOutput);
   });
 });
