@@ -27,4 +27,13 @@ describe("frames", () => {
     //assert
     expect(bowlingFrame(input)).toBe(expectedOutput);
   });
+
+  it("return correct score of miss", () => {
+    //arrange
+    const input = "-- -- -- -- -- -- -- -- -- --";
+    //act
+    const expectedOutput = 0;
+    //assert
+    expect(bowlingFrame(input)).toBe(expectedOutput);
+  });
 });
